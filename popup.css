@@ -1,0 +1,43 @@
+.container{
+  width: 400px;
+  height: auto;
+  font-size: 14px;
+}
+.tt{
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 10px;
+  background-color: #9cccef;
+}
+.url{
+  height: 50px;
+  background-color: rgba(246, 241, 241, 0.29);
+  padding: 10px 10px;
+  word-wrap:break-word;
+  word-break:break-all;
+}
+.message{
+  height: 50px;
+  background-color: #e9eaf1;
+  padding: 10px 10px;
+  font-size: 16px;
+}
+.message .legitimate{
+  color:green;
+}
+.message .phishing{
+  color:red;
+}
+.report{
+  height: 20px;
+  background-color: #fbf5f5;
+  padding: 10px 10px;
+  text-align: right;
+}
+
+#buttonDiv button{
+    width: 60px;
+    height: 20px;
+    margin-right: 20px;
+}

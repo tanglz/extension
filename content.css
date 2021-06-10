@@ -1,0 +1,61 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+.container{
+    background-color: #a20a0a;
+    min-height: 800px;
+}
+.bar{
+    height:100px;
+}
+.info{
+    min-height: 200px;
+    margin: 0 auto;
+    width: 400px;
+}
+.bt{
+    height: 80px;
+}
+.info .tt{
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+}
+.info .detail{
+    color: white;
+    font-size: 14px;
+}
+.info .action{
+
+}
+.info .sign{
+    margin-right: 20px;
+    float:left;
+    width: 100px;
+    height: 100px;
+}
+.info .action .view{
+    padding: 10px;
+    border: 1px white solid;
+    background-color: #a20a0a;
+    color: white;
+    margin-right: 50px;
+    margin-left: 120px;
+}
+.info .action .back{
+    padding: 10px;
+    border: 1px #a20a0a solid;
+    background-color: white;
+    color: #a20a0a;
+}
+#phishing_url{
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    border-width: 1px;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+}

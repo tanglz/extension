@@ -1,0 +1,36 @@
+{
+  "name": "anti phishing",
+  "description": "detect phishing websites",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "https://*/"],
+      "css": ["content.css"],
+      "js": ["jquery-3.6.0.min.js","content-script.js"]
+    }
+  ],
+  "permissions": ["storage", "activeTab", "scripting", "tabs", "webRequest"],
+  "host_permissions": [
+    "http://127.0.0.1/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/protection_16.png",
+      "32": "/images/protection_32.png",
+      "48": "/images/protection_64.png",
+      "128": "/images/protection_128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/protection_16.png",
+    "32": "/images/protection_32.png",
+    "48": "/images/protection_64.png",
+    "128": "/images/protection_128.png"
+  },
+  "options_page": "options.html"
+}
