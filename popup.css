@@ -1,43 +1,70 @@
-.container{
-  width: 400px;
+.container-phishing{
   height: auto;
   font-size: 14px;
+  width:320px;
+}
+
+.container-phishing .card{
+  max-width: 30rem;
+  height: auto;
+   border: none;
+}
+.container-phishing .register{
+    height: 40px;
+    padding: 10px;
+    background-color: cornflowerblue;
+}
+.container-phishing .register a{
+    padding-left: 10px;
+    color: white;
+    text-decoration: none;
+}
+.container-phishing .card-header{
+  padding-top: 4px;
+    padding-bottom: 4px;
 }
 .tt{
-  height: 30px;
   font-size: 18px;
   font-weight: bold;
   padding: 10px 10px;
   background-color: #9cccef;
 }
 .url{
-  height: 50px;
-  background-color: rgba(246, 241, 241, 0.29);
-  padding: 10px 10px;
-  word-wrap:break-word;
-  word-break:break-all;
+    word-wrap: break-word;
+    word-break: break-all;
+    color: black;
+    padding: 10px;
 }
-.message{
-  height: 50px;
-  background-color: #e9eaf1;
-  padding: 10px 10px;
-  font-size: 16px;
+.url li{
+    margin: 0;
+    padding-left: 50px;
+    list-style: none;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 40px;
+    min-height: 40px;
 }
-.message .legitimate{
-  color:green;
+.url li.yes{
+   background-image: url(images/icon7.png);
 }
-.message .phishing{
-  color:red;
-}
-.report{
-  height: 20px;
-  background-color: #fbf5f5;
-  padding: 10px 10px;
-  text-align: right;
+.url li.no{
+  background-image: url(images/icon4.png);
 }
 
+.message{
+  font-size: 16px;
+    padding: 10px 10px 40px 60px;
+}
+
+.report{
+      text-align: right;
+    padding: 10px;
+    background-color: goldenrod;
+}
+.report a{
+    color: black;
+    text-decoration: none;
+}
 #buttonDiv button{
     width: 60px;
-    height: 20px;
-    margin-right: 20px;
 }

@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-<!--    <button id="changeColor"></button>-->
-   <div class="container">
-      <div class="tt">ANTI-PHISHING</div>
-      <div class="url" id="detect_url"></div>
-      <div class="message" id="verify_result"></div>
-      <div class="report">
-        <a href="https://www.phishtank.com/" target="_blank">report this site as phishing website -></a>
+   <div class="container-phishing">
+       <div class="card" id="phishing-card">
+          <div class="card-header"><img src="images/logo4.png" style="width: 100px;height: auto"/></div>
+          <div class="register"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+  <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+  <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+  <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+</svg><a href="http://127.0.0.1:5000" target="_blank">Register with my organization</a></div>
+          <div class="url" ><li id="detect_url"></li></div>
+          <div class="message" id="verify_result"></div>
+          <div class="report"><a id="report_action" target="_blank" href="" class='report_error'></a></div>
       </div>
    </div>
 

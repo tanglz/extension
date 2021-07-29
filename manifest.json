@@ -1,5 +1,5 @@
 {
-  "name": "anti phishing",
+  "name": "Hawkeye",
   "description": "detect phishing websites",
   "version": "1.0",
   "manifest_version": 3,
@@ -10,7 +10,8 @@
     {
       "matches": ["http://*/*", "https://*/*", "https://*/"],
       "css": ["content.css"],
-      "js": ["jquery-3.6.0.min.js","content-script.js"]
+      "js": ["jquery-3.6.0.min.js","content-script.js"],
+      "run_at": "document_start"
     }
   ],
   "permissions": ["storage", "activeTab", "scripting", "tabs", "webRequest"],
@@ -20,17 +21,17 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/protection_16.png",
-      "32": "/images/protection_32.png",
-      "48": "/images/protection_64.png",
-      "128": "/images/protection_128.png"
+      "16": "/images/logo1.png",
+      "32": "/images/logo1.png",
+      "48": "/images/logo1.png",
+      "128": "/images/logo1.png"
     }
   },
   "icons": {
-    "16": "/images/protection_16.png",
-    "32": "/images/protection_32.png",
-    "48": "/images/protection_64.png",
-    "128": "/images/protection_128.png"
+    "16": "/images/logo1.png",
+    "32": "/images/logo1.png",
+    "48": "/images/logo1.png",
+    "128": "/images/logo1.png"
   },
   "options_page": "options.html"
 }

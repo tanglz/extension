@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+        padding: 0px;
+    }
+    .container-alert{
+        background-color: #a20a0a;
+        min-height: 800px;
+        font-size: 14px;
+    }
+    .bar{
+        height:100px;
+    }
+    .info{
+        min-height: 200px;
+        margin: 0 auto;
+        width: 400px;
+    }
+    .bt{
+        height: 80px;
+    }
+    .info .tt{
+        font-size: 18px;
+        font-weight: bold;
+        color: white;
+    }
+    .info .detail{
+        color: white;
+        font-size: 14px;
+    }
+    .info .action{
+
+    }
+    .info .sign{
+        margin-right: 20px;
+        float:left;
+        width: 100px;
+        height: 100px;
+    }
+    .info .action .view{
+        padding: 10px;
+        border: 1px white solid;
+        background-color: #a20a0a;
+        color: white;
+        margin-right: 50px;
+        margin-left: 120px;
+    }
+    .info .action .back{
+        padding: 10px;
+        border: 1px #a20a0a solid;
+        background-color: white;
+        color: #a20a0a;
+    }
+    #phishing_url{
+        background: black;
+        color: white;
+        font-size: 16px;
+    }
+</style>
+<body>
+<div class="container-alert">
+  <div class="bar">
+
+  </div>
+  <div class="info">
+        <div class="sign">
+            <img src="../images/sign.png" width="100px" height="100px"/>
+        </div>
+        <div class="tt">
+            <p>DECEPTIVE SITE AHEAD</p>
+        </div>
+        <div class="detail">
+            <p>The website <span id="phishing_url"></span> may be trying to trick you into doing something dangerous like installing software or revealing your personal information.</p>
+        </div>
+<!--        <div class="action">-->
+<!--            <button class="view">View Details</button>-->
+<!--            <button class="back">Back to Safety</button>-->
+<!--        </div>-->
+  </div>
+  <div class="bt">
+
+  </div>
+</div>
+<script src="alert.js">
+</script>
+</body>
+</html>
