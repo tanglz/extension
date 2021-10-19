@@ -14,22 +14,16 @@ chrome.runtime.onMessage.addListener(
         // listen for messages sent from background.js
         if (request.message === 'result') {
             console.log("request_url:"+request.url); // new url is now in content scripts!
-            let verify_result = request.result;
-            if (verify_result == -1) {
+            let data = request.result;
+            if (data.phishing) {
                 console.log("phishing")
-                const URL = "http://192.168.0.118:5000/verify/add?error_type=2&url=" +request.url
+                const URL = "http://35.224.126.121/:5000/verify/add?error_type=2&url=" +request.url
                 document.body.innerHTML += alarmModal;
                 document.getElementById("external_url").href=URL;
-                // document.getElementById("phishing_url").innerText = request.url;
-                // chrome.storage.sync.get("color", (data) => {
-                //     let currentColor = data.color;
-                //     // document.getElementsByClassName("container").style.background_color = currentColor
-                // });
                 // Get the modal
                 const modal = document.getElementById("alarmModal");
                 // Get the <span> element that closes the modal
                 const closeBtn = document.getElementById("alarm-close-btn");
-
                 // When the user clicks on <span> (x), close the modal
                 closeBtn.addEventListener('click',function (event){
                     modal.style.display = "none";
