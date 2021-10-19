@@ -47,15 +47,20 @@
 .url li.yes{
    background-image: url(images/icon7.png);
 }
+.url li.warn{
+    background-image: url(images/icon6.png);
+}
 .url li.no{
   background-image: url(images/icon4.png);
 }
 
 .message{
-  font-size: 16px;
-    padding: 10px 10px 40px 60px;
+  font-size: 12px;
+    /*padding: 10px;*/
 }
+.message li{
 
+}
 .report{
       text-align: right;
     padding: 10px;
@@ -67,4 +72,19 @@
 }
 #buttonDiv button{
     width: 60px;
+}
+.risk-level{
+    padding-left: 10px;
+    background-color: gainsboro;
+    height: 40px;
+    line-height: 40px;
+}
+.risk-level .bb{
+    font-weight: bold;
+    padding-right: 12px;
+}
+.risk-level .more{
+    float:right;
+    padding-right: 10px;
+        text-decoration: none;
 }

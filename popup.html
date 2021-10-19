@@ -14,7 +14,21 @@
   <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
 </svg><a href="http://127.0.0.1:5000" target="_blank">Register with my organization</a></div>
           <div class="url" ><li id="detect_url"></li></div>
-          <div class="message" id="verify_result"></div>
+          <div class="risk-level">
+              <span class="bb">Risk Level:</span><span id="phishing-level" ></span><a target="_blank" href="" id="risk-more" class="more">more>></a>
+          </div>
+           <div class="message">
+              <ul class="list-group">
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span class="fw-bold">Country: </span><span id="netloc-country" class="badge bg-primary rounded-pill"></span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span class="fw-bold">Years:</span> <span class="badge bg-primary rounded-pill" id="netloc-years"></span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span class="fw-bold">Domain:</span> <span class="badge bg-primary rounded-pill" id="netloc-domain"></span></li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center"><span class="fw-bold">Org: </span><span class="badge bg-primary rounded-pill" id="netloc-org"></span></li>
+              </ul>
+<!--              <ul class="list-group list-group-flush">-->
+<!--                  <li class="list-group-item">Logo Description: <span id="netloc-logo"></span></li>-->
+<!--&lt;!&ndash;                  <li>Inputs: <span id="netloc-input"></span></li>&ndash;&gt;-->
+<!--              </ul>-->
+          </div>
           <div class="report"><a id="report_action" target="_blank" href="" class='report_error'></a></div>
       </div>
    </div>
