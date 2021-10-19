@@ -17,7 +17,7 @@ chrome.runtime.onMessage.addListener(
             let verify_result = request.result;
             if (verify_result == -1) {
                 console.log("phishing")
-                const URL = "http://127.0.0.1:5000/verify/add?error_type=2&url=" +request.url
+                const URL = "http://192.168.0.118:5000/verify/add?error_type=2&url=" +request.url
                 document.body.innerHTML += alarmModal;
                 document.getElementById("external_url").href=URL;
                 // document.getElementById("phishing_url").innerText = request.url;

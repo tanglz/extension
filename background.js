@@ -17,7 +17,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
         return;
     }
     const parameter = {url: current_url};
-    fetch('http://127.0.0.1:5000/predict/ml', {
+    fetch('http://192.168.0.118:5000/predict/ai', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
