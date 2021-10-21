@@ -1,5 +1,7 @@
 const a =1;
 function fun_action(tabId) {
+//    api_url = 'http://35.224.126.121:5000/predict/ai';
+    api_url = 'http://192.168.0.118:5000/predict/ai';
     let current_url = "";
     chrome.storage.sync.set({'data': {}});
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
@@ -14,7 +16,7 @@ function fun_action(tabId) {
         }
         chrome.storage.sync.set({current_url});
         const parameter = {url: current_url};
-        fetch('http://35.224.126.121:5000/predict/ai', {
+        fetch(api_url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

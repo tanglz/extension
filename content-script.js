@@ -12,12 +12,13 @@ const alarmModal="<div id=\"alarmModal\" class=\"alarm-modal\">\n" +
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         // listen for messages sent from background.js
+        api_url = 'http://192.168.0.118:5000/verify/add?error_type=2&url=';
         if (request.message === 'result') {
             console.log("request_url:"+request.url); // new url is now in content scripts!
             let data = request.result;
             if (data.phishing) {
                 console.log("phishing")
-                const URL = "http://35.224.126.121/:5000/verify/add?error_type=2&url=" +request.url
+                const URL = api_url +request.url
                 document.body.innerHTML += alarmModal;
                 document.getElementById("external_url").href=URL;
                 // Get the modal

@@ -6,6 +6,8 @@ chrome.storage.sync.get("current_url", ({ current_url }) => {
 });
 let action_container = document.getElementById("report_action");
 let error_type=1
+let api_url_1 = 'http://192.168.0.118:5000/verify/add?error_type=1&url=';
+let api_url_2 = 'http://192.168.0.118:5000/verify/add?error_type=2&url=';
 
 chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){
@@ -20,7 +22,7 @@ chrome.storage.sync.get("data", ({ data }) => {
       url_container.classList.add('yes');
       url_container.classList.remove('no');
       url_container.classList.remove('warn');
-      action_container.href='http://35.224.126.121:5000/verify/add?error_type=1&url='+link
+      action_container.href=api_url_1 +link
     }
     if(data.phishing){
       // verify_html="<div class='phishing'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</div>";
@@ -34,7 +36,7 @@ chrome.storage.sync.get("data", ({ data }) => {
         url_container.classList.add('warn');
       }
       url_container.classList.remove('yes');
-      action_container.href='http://35.224.126.121:5000/verify/add?error_type=2&url='+link
+      action_container.href=api_url_2+link
     }
     document.getElementById("netloc-country").innerText = data.net_info.country;
     document.getElementById("netloc-domain").innerText = data.net_info.domain;
@@ -58,7 +60,7 @@ chrome.storage.sync.get("data", ({ data }) => {
     }
     document.getElementById("phishing-level").innerText = risk_text
     document.getElementById("phishing-level").style.color = text_color
-    document.getElementById("risk-more").href = 'http://35.224.126.121:5000/url/net_loc?url='+link
+    document.getElementById("risk-more").href = 'http://192.168.0.118:5000/url/net_loc?url='+link
   }
 
 });
