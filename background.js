@@ -1,7 +1,8 @@
-const a =1;
+const server_hostname='192.168.0.118:5000';
+// google instance 35.224.126.121:5000
+chrome.storage.sync.set({'server_hostname': server_hostname});
 function fun_action(tabId) {
-//    api_url = 'http://35.224.126.121:5000/predict/ai';
-    api_url = 'http://192.168.0.118:5000/predict/ai';
+    api_url = 'http://'+server_hostname+'/predict/ai';
     let current_url = "";
     chrome.storage.sync.set({'data': {}});
     chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {

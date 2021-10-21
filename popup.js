@@ -6,8 +6,10 @@ chrome.storage.sync.get("current_url", ({ current_url }) => {
 });
 let action_container = document.getElementById("report_action");
 let error_type=1
-let api_url_1 = 'http://192.168.0.118:5000/verify/add?error_type=1&url=';
-let api_url_2 = 'http://192.168.0.118:5000/verify/add?error_type=2&url=';
+let server_hostname = chrome.storage.sync.get("server_hostname");
+console.log(server_hostname);
+let api_url_1 = 'http://'+server_hostname +'/verify/add?error_type=1&url=';
+let api_url_2 = 'http://'+server_hostname+'/verify/add?error_type=2&url=';
 
 chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){
@@ -60,7 +62,7 @@ chrome.storage.sync.get("data", ({ data }) => {
     }
     document.getElementById("phishing-level").innerText = risk_text
     document.getElementById("phishing-level").style.color = text_color
-    document.getElementById("risk-more").href = 'http://192.168.0.118:5000/url/net_loc?url='+link
+    document.getElementById("risk-more").href = 'http://'+server_hostname+'/url/net_loc?url='+link
   }
 
 });
