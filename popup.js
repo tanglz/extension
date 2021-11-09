@@ -6,10 +6,9 @@ chrome.storage.sync.get("current_url", ({ current_url }) => {
 });
 let action_container = document.getElementById("report_action");
 let error_type=1
-let server_hostname = chrome.storage.sync.get("server_hostname");
-console.log(server_hostname);
-let api_url_1 = 'http://'+server_hostname +'/verify/add?error_type=1&url=';
-let api_url_2 = 'http://'+server_hostname+'/verify/add?error_type=2&url=';
+let server_hostname = '127.0.0.1'
+let api_url_1 = 'https://'+server_hostname +'/verify/add?error_type=1&url=';
+let api_url_2 = 'https://'+server_hostname+'/verify/add?error_type=2&url=';
 
 chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){

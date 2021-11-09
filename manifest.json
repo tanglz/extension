@@ -10,13 +10,13 @@
     {
       "matches": ["http://*/*", "https://*/*", "https://*/"],
       "css": ["content.css"],
-      "js": ["jquery-3.6.0.min.js","content-script.js"],
+      "js": ["jquery-3.6.0.min.js","html2canvas.min.js","jquery.plugin.html2canvas.js","content-script.js"],
       "run_at": "document_start"
     }
   ],
   "permissions": ["storage", "activeTab", "scripting", "tabs", "webRequest"],
   "host_permissions": [
-    "http://192.168.0.118:5000/*;"
+    "https://127.0.0.1:5000/*;"
   ],
   "action": {
     "default_popup": "popup.html",
