@@ -1,5 +1,5 @@
 {
-  "name": "Hawkeye",
+  "name": "Hawk-eyes",
   "description": "detect phishing websites",
   "version": "1.0",
   "manifest_version": 3,
@@ -8,15 +8,15 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "https://*/"],
+      "matches": ["https://*/*", "http://*/*"],
       "css": ["content.css"],
-      "js": ["jquery-3.6.0.min.js","html2canvas.min.js","jquery.plugin.html2canvas.js","content-script.js"],
+      "js": ["jquery-3.6.0.min.js","content-script.js"],
       "run_at": "document_start"
     }
   ],
   "permissions": ["storage", "activeTab", "scripting", "tabs", "webRequest"],
   "host_permissions": [
-    "https://127.0.0.1:5000/*;"
+    "https://www.api.hawk-eyes.ca/*"
   ],
   "action": {
     "default_popup": "popup.html",

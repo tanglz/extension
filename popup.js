@@ -1,14 +1,31 @@
 let url_container = document.getElementById("detect_url");
 let link = "";
+const api_host="https://www.api.hawk-eyes.ca/";
 chrome.storage.sync.get("current_url", ({ current_url }) => {
-  link = current_url
-  url_container.innerHTML = current_url;
+    link = current_url
+    url_container.innerHTML = current_url;
+    //whois
+    let net_info;
+    api_url = api_host+'/net/info';
+    fetch(api_url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({'url': link}),
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("netloc-country").innerText = data.net_info.country;
+        document.getElementById("netloc-domain").innerText = data.net_info.domain;
+        document.getElementById("netloc-years").innerText = data.net_info.years;
+        document.getElementById("netloc-org").innerText = data.net_info.org;
+    });
 });
 let action_container = document.getElementById("report_action");
 let error_type=1
-let server_hostname = '127.0.0.1'
-let api_url_1 = 'https://'+server_hostname +'/verify/add?error_type=1&url=';
-let api_url_2 = 'https://'+server_hostname+'/verify/add?error_type=2&url=';
+let api_url_1 = api_host +'/verify/add?error_type=1&url=';
+let api_url_2 = api_host +'/verify/add?error_type=2&url=';
 
 chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){
@@ -39,14 +56,6 @@ chrome.storage.sync.get("data", ({ data }) => {
       url_container.classList.remove('yes');
       action_container.href=api_url_2+link
     }
-    document.getElementById("netloc-country").innerText = data.net_info.country;
-    document.getElementById("netloc-domain").innerText = data.net_info.domain;
-    document.getElementById("netloc-years").innerText = data.net_info.years;
-    document.getElementById("netloc-org").innerText = data.net_info.org;
-    const logos = data.logos
-    if(logos&&logos.length>=1){
-      document.getElementById("netloc-logo").innerText = logos[0];
-    }
     action_container.innerText = action_text;
     const risk = data.risk
     let risk_text = "LOW"
@@ -61,7 +70,6 @@ chrome.storage.sync.get("data", ({ data }) => {
     }
     document.getElementById("phishing-level").innerText = risk_text
     document.getElementById("phishing-level").style.color = text_color
-    document.getElementById("risk-more").href = 'http://'+server_hostname+'/url/net_loc?url='+link
+    document.getElementById("risk-more").href = api_host+'/url/net_loc?url='+link
   }
-
 });

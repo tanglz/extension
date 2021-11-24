@@ -6,7 +6,7 @@ async function storeCurrentTabUrl() {
   chrome.tabs.sendMessage(tab.id, {
         message: 'check',
         currentUrl: currentUrl,
-        result: tab.id
+        tabId: tab.id
   });
   return tab.url;
 }
@@ -19,4 +19,25 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
 chrome.tabs.onActivated.addListener(function (activeInfo) {
     storeCurrentTabUrl();
 });
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+    if (request.message === "DOM"){
+        api_url = "https://www.api.hawk-eyes.ca/predict/ai";
+        fetch(api_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'url': request.currentUrl,'num_input':request.num_input,'num_button':request.num_button,'title':request.title, 'inputs':request.inputs,'buttons':request.buttons}),
+        })
+        .then(response => response.json())
+        .then(data => {
+            chrome.storage.sync.set({'data': data});
+            sendResponse(data);
+        });
+    }
+    return true;
+  }
+);
 
