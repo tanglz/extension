@@ -83,7 +83,9 @@ chrome.runtime.onMessage.addListener(
               console.log(response)
               if (response.phishing) {
                     const URL = "https://www.api.hawk-eyes.ca/verify/add?error_type=2&url=" +request.currentUrl
-                    document.body.innerHTML = document.body.innerHTML + alarmModal;
+                    var elemDiv = document.createElement('div');
+                    elemDiv.innerHTML = alarmModal;
+                    document.body.appendChild(elemDiv);
                     document.getElementById("external_url").href=URL;
                     // Get the modal
                     const modal = document.getElementById("alarmModal");
