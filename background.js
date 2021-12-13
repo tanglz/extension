@@ -2,24 +2,13 @@ async function storeCurrentTabUrl() {
   let queryOptions = { active: true, currentWindow: true };
   let [tab] = await chrome.tabs.query(queryOptions);
   currentUrl = tab.url;
-  chrome.storage.sync.get("exclude_url_list", ({ exclude_url_list }) => {
-      console.log("test");
-      console.log(exclude_url_list);
-      if(exclude_url_list && exclude_url_list.includes(currentUrl)){
-          console.log('exclude');
-          return;
-      }else{
-          console.log('start......')
-          chrome.storage.sync.set({'current_url': currentUrl});
-          chrome.tabs.sendMessage(tab.id, {
-                message: 'check',
-                currentUrl: currentUrl,
-                tabId: tab.id
-          });
-          return tab.url;
-      }
+  chrome.storage.sync.set({'current_url': currentUrl});
+  chrome.tabs.sendMessage(tab.id, {
+        message: 'check',
+        currentUrl: currentUrl,
+        tabId: tab.id
   });
-
+  return tab.url;
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {

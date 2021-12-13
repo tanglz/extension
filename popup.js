@@ -31,43 +31,26 @@ chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){
     console.log(data)
     verify_html="";
+    let risk_text = "LOW"
+    let text_color = "green"
     if(!data.phishing){
-      // verify_html="<div class='legitimate'>We did not find any fraudulent elements on this page.</div>";
       action_text="Report this site as suspicious >>";
-      // card_container.classList.add('bg-success');
-      // card_container.classList.remove('bg-danger');
       url_container.style.color='green';
       url_container.classList.add('yes');
       url_container.classList.remove('no');
-      url_container.classList.remove('warn');
       action_container.href=api_url_1 +link
-    }
-    if(data.phishing){
-      // verify_html="<div class='phishing'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</div>";
+
+    }else{
       action_text="False Alarm >>";
       error_type=2
-      if(data.risk >0.99){
-        url_container.style.color='red';
-        url_container.classList.add('no');
-      }else{
-        url_container.style.color='orangered';
-        url_container.classList.add('warn');
-      }
+      url_container.style.color='red';
+      url_container.classList.add('no');
       url_container.classList.remove('yes');
       action_container.href=api_url_2+link
+      risk_text = "HIGH"
+      text_color = "red"
     }
     action_container.innerText = action_text;
-    const risk = data.risk
-    let risk_text = "LOW"
-    let text_color = "green"
-    if(risk>=0.99){
-        risk_text = "HIGH"
-        text_color = "red"
-    }
-    if(risk<0.99 && risk>=0.85){
-        risk_text = "MEDIUM"
-        text_color = "orangered"
-    }
     document.getElementById("phishing-level").innerText = risk_text
     document.getElementById("phishing-level").style.color = text_color
     document.getElementById("risk-more").href = api_host+'/url/net_loc?url='+link

@@ -2,6 +2,10 @@ body{
     margin: 0px;
     padding: 0px;
 }
+.alarm-modal p{
+    margin-bottom:12px;
+    text-align:center;
+}
 /* The Modal (background) */
 .alarm-modal {
   /*display: none; !* Hidden by default *!*/
@@ -54,11 +58,20 @@ body{
   color: red;
   text-decoration: none;
 }
-.alarm-modal-content .p-btn{
-  text-align: center;
-}
 .alarm-modal-content .p-btn button{
    border: 1px solid red;
+   background-color:white;
+   color:red;
+}
+.alarm-modal-content .p-btn .report{
+   border: 1px solid red;
+   background-color:white;
+   color:red;
+}
+.alarm-modal-content .p-btn .cls{
+   border: 1px solid red;
+   background-color:white;
+   color:black;
 }
 /*#phishing_url{*/
 /*    font-size: 18px;*/

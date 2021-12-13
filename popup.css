@@ -43,6 +43,8 @@
     background-position: left center;
     background-size: 40px;
     min-height: 40px;
+    max-height: 80px;
+    overflow-y: auto;
 }
 .url li.yes{
    background-image: url(images/ok.png);

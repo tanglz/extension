@@ -1,10 +1,10 @@
-const alarmModal="<div id=\"alarmModal\" class=\"alarm-modal\">\n" +
+const alarmModal="<div id=\"alarmModal\" class=\"alarm-modal phishing-alarm\">\n" +
     "\n" +
     "  <!-- Modal content -->\n" +
     "  <div class=\"alarm-modal-content\">\n" +
-    "    <span class=\"alarm-close\" id=\"phishing-alarm-close-btn\">&times;</span>\n" +
-    "    <p style='text-align: center'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</p>\n" +
-    "<p class='p-btn'><button class='btn-default' id ='report-phishing-false-alarm'><a target='_blank' id='external_url' href=''> Report False Alarm >> </a></button></p>\n" +
+    "    <span class=\"alarm-close phishing-alarm-close-btn\">&times;</span>\n" +
+    "    <p class='alarm-text-desc'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</p>\n" +
+    "<p class='p-btn'><button type='button' class='btn btn-outline-danger report' id ='report-phishing-false-alarm'> Report False Alarm >> </button> <button type='button' class='phishing-alarm-close-btn btn btn-outline-dark cls'>Close</button></p>\n" +
     "  </div>\n" +
     "\n" +
     "</div>";
@@ -17,6 +17,12 @@ let link ="";
 chrome.storage.sync.get("current_url", ({ current_url }) => {
   link = current_url
 });
+function closeAction(){
+      // Get the modal
+      const modal = document.getElementById("alarmModal");
+      modal.style.display = "none";
+      modal.remove();
+}
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -81,26 +87,36 @@ chrome.runtime.onMessage.addListener(
                 buttons: buttons
             }, function(response) {
               if (response.phishing) {
-                    const URL = "https://www.api.hawk-eyes.ca/verify/add?error_type=2&url=" +request.currentUrl
-                    var elemDiv = document.createElement('div');
-                    elemDiv.innerHTML = alarmModal;
-                    document.body.appendChild(elemDiv);
-                    document.getElementById("external_url").href=URL;
-                    // Get the modal
-                    const modal = document.getElementById("alarmModal");
-                    // Get the <span> element that closes the modal
-                    const closeBtn = document.getElementById("phishing-alarm-close-btn");
-                    // When the user clicks on <span> (x), close the modal
-                    closeBtn.addEventListener('click',function (event){
-                        modal.style.display = "none";
-                        console.log("link:"+link);
-                        chrome.storage.sync.set({"exclude_url_list":[link]});
-                    });
-                    const reportBtn = document.getElementById("report-phishing-false-alarm");
-                    reportBtn.addEventListener('click',function (event){
-                        console.log('report');
-                        modal.style.display = "none";
-                        chrome.storage.sync.set({"exclude_url_list":[link]});
+                    chrome.storage.sync.get("exclude_url_list", ({ exclude_url_list }) => {
+                        console.log(exclude_url_list);
+                        if(exclude_url_list && exclude_url_list.includes(request.currentUrl)){
+                            return;
+                        }else{
+                            const URL = "https://www.api.hawk-eyes.ca/verify/add?error_type=2&url=" +request.currentUrl
+                            var elemDiv = document.createElement('div');
+                            elemDiv.innerHTML = alarmModal;
+                            document.body.appendChild(elemDiv);
+                            // Get the <span> element that closes the modal
+                            const closeBtns = document.getElementsByClassName("phishing-alarm-close-btn");
+                            // When the user clicks on <span> (x), close the modal
+                            if(exclude_url_list){
+                                exclude_url_list.push(link);
+                            }else{
+                                exclude_url_list = [link];
+                            }
+                            for (var i = 0; i < closeBtns.length; i++) {
+                                closeBtns[i].addEventListener('click', function(event){
+                                    closeAction();
+                                    chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
+                                });
+                            }
+                            const reportBtn = document.getElementById("report-phishing-false-alarm");
+                            reportBtn.addEventListener('click',function (event){
+                                closeAction();
+                                chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
+                                window.open(URL, '_blank').focus();
+                            });
+                        }
                     });
               }
             });
@@ -108,6 +124,7 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
+
 
 
 
