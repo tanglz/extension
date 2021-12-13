@@ -2,9 +2,9 @@ const alarmModal="<div id=\"alarmModal\" class=\"alarm-modal\">\n" +
     "\n" +
     "  <!-- Modal content -->\n" +
     "  <div class=\"alarm-modal-content\">\n" +
-    "    <span class=\"alarm-close\" id=\"alarm-close-btn\">&times;</span>\n" +
+    "    <span class=\"alarm-close\" id=\"phishing-alarm-close-btn\">&times;</span>\n" +
     "    <p style='text-align: center'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</p>\n" +
-    "<p class='p-btn'><button class='btn-default'><a target='_blank' id='external_url' href=''> False Alarm >> </a></button></p>\n" +
+    "<p class='p-btn'><button class='btn-default' id ='report-phishing-false-alarm'><a target='_blank' id='external_url' href=''> Report False Alarm >> </a></button></p>\n" +
     "  </div>\n" +
     "\n" +
     "</div>";
@@ -80,7 +80,6 @@ chrome.runtime.onMessage.addListener(
                 inputs:inputs,
                 buttons: buttons
             }, function(response) {
-              console.log(response)
               if (response.phishing) {
                     const URL = "https://www.api.hawk-eyes.ca/verify/add?error_type=2&url=" +request.currentUrl
                     var elemDiv = document.createElement('div');
@@ -90,10 +89,18 @@ chrome.runtime.onMessage.addListener(
                     // Get the modal
                     const modal = document.getElementById("alarmModal");
                     // Get the <span> element that closes the modal
-                    const closeBtn = document.getElementById("alarm-close-btn");
+                    const closeBtn = document.getElementById("phishing-alarm-close-btn");
                     // When the user clicks on <span> (x), close the modal
                     closeBtn.addEventListener('click',function (event){
                         modal.style.display = "none";
+                        console.log("link:"+link);
+                        chrome.storage.sync.set({"exclude_url_list":[link]});
+                    });
+                    const reportBtn = document.getElementById("report-phishing-false-alarm");
+                    reportBtn.addEventListener('click',function (event){
+                        console.log('report');
+                        modal.style.display = "none";
+                        chrome.storage.sync.set({"exclude_url_list":[link]});
                     });
               }
             });

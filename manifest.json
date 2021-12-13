@@ -1,5 +1,5 @@
 {
-  "name": "Hawk-eyes",
+  "name": "The HAWK EYES",
   "description": "detect phishing websites",
   "version": "1.0",
   "manifest_version": 3,
@@ -21,17 +21,17 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/logo1.png",
-      "32": "/images/logo1.png",
-      "48": "/images/logo1.png",
-      "128": "/images/logo1.png"
+      "16": "/images/main_icon.png",
+      "32": "/images/main_icon.png",
+      "48": "/images/main_icon.png",
+      "128": "/images/main_icon.png"
     }
   },
   "icons": {
-    "16": "/images/logo1.png",
-    "32": "/images/logo1.png",
-    "48": "/images/logo1.png",
-    "128": "/images/logo1.png"
+    "16": "/images/main_icon.png",
+    "32": "/images/main_icon.png",
+    "48": "/images/main_icon.png",
+    "128": "/images/main_icon.png"
   },
   "options_page": "options.html"
 }

@@ -45,13 +45,13 @@
     min-height: 40px;
 }
 .url li.yes{
-   background-image: url(images/icon7.png);
+   background-image: url(images/ok.png);
 }
 .url li.warn{
-    background-image: url(images/icon6.png);
+    background-image: url(images/warn.png);
 }
 .url li.no{
-  background-image: url(images/icon4.png);
+  background-image: url(images/stop.png);
 }
 
 .message{
