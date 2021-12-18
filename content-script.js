@@ -38,6 +38,9 @@ chrome.runtime.onMessage.addListener(
             buttons=[]
             $('input').each(function(index){
                 type = $(this).attr('type');
+                if(type==''|| typeof type ==="undefined"){
+                    type="text"
+                }
                 valid_input_types = ['text','number','password','search','email','tel'];
                 valid_button_types = ['submit','button']
                 if($.inArray(type, valid_input_types)>-1){
