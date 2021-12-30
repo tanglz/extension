@@ -121,6 +121,11 @@ chrome.runtime.onMessage.addListener(
                             });
                         }
                     });
+              }else{
+                  if(response.source=='report'){
+                     count = response.num_users
+                     console.log(count+' user reported the link as a phishing link. Do you agree?')
+                  }
               }
             });
         });

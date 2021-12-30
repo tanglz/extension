@@ -8,15 +8,33 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://*/*", "http://*/*"],
-      "css": ["bootstrap.min.css","content.css"],
-      "js": ["jquery-3.6.0.min.js","content-script.js"],
+      "matches": [
+        "https://*/*",
+        "http://*/*"
+      ],
+      "css": [
+        "bootstrap.min.css",
+        "content.css"
+      ],
+      "js": [
+        "jquery-3.6.0.min.js",
+        "content-script.js"
+      ],
       "run_at": "document_start"
     }
   ],
-  "permissions": ["storage", "activeTab", "scripting", "tabs", "webRequest"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "webRequest"
+  ],
   "host_permissions": [
-    "https://www.api.hawk-eyes.ca/*"
+    "https://www.api.thehawkeyes.com/*",
+    "https://api.thehawkeyes.com/*",
+    "http://api.thehawkeyes.com/*",
+    "http://www.api.thehawkeyes.com/*"
   ],
   "action": {
     "default_popup": "popup.html",

@@ -1,6 +1,6 @@
 let url_container = document.getElementById("detect_url");
 let link = "";
-const api_host="https://www.api.hawk-eyes.ca/";
+const api_host="https://www.api.thehawkeyes.com/";
 chrome.storage.sync.get("current_url", ({ current_url }) => {
     link = current_url
     url_container.innerHTML = current_url;

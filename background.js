@@ -23,7 +23,7 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "DOM"){
-        api_url = "https://www.api.hawk-eyes.ca/predict/ai";
+        api_url = "https://www.api.thehawkeyes.com/predict/ai";
         fetch(api_url, {
             method: 'POST',
             headers: {
