@@ -28,11 +28,11 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "check"){
         $( document ).ready(function() {
-            favicon_link = $("[rel~='icon']").attr('href');
+//            favicon_link = $("[rel~='icon']").attr('href');
             title = $('title').text();
-            let cloneBody = $('body').clone().find('script').remove().end();
-            bb = cloneBody.find('style').remove().end();
-            text = bb.text()
+//            let cloneBody = $('body').clone().find('script').remove().end();
+//            bb = cloneBody.find('style').remove().end();
+//            text = bb.text()
             placeholders=[]
             inputs = []
             buttons=[]
@@ -78,8 +78,23 @@ chrome.runtime.onMessage.addListener(
             $('textarea').each(function(index){
                 num_input=num_input+1;
             });
-            page_description=title;
-            text = $.trim(text);
+//            page_description=title;
+//            text = $.trim(text);
+            // H1-H6, P
+//            h1 = $('h1').text();
+//            h2 = $('h2').text();
+//            h3 = $('h3').text();
+//            h4 = $('h4').text();
+//            h5 = $('h5').text();
+//            h6 = $('h6').text();
+//            p = $('p').text();
+//            console.log("h1:"+h1);
+//            console.log("h2:"+h2);
+//            console.log("h3:"+h3);
+//            console.log("h4:"+h4);
+//            console.log("h5:"+h5);
+//            console.log("h6:"+h6);
+//            console.log("p:"+p);
             chrome.runtime.sendMessage({
                 message: 'DOM',
                 currentUrl: request.currentUrl,
@@ -95,7 +110,7 @@ chrome.runtime.onMessage.addListener(
                         if(exclude_url_list && exclude_url_list.includes(request.currentUrl)){
                             return;
                         }else{
-                            const URL = "https://www.api.hawk-eyes.ca/verify/add?error_type=2&url=" +request.currentUrl
+                            const URL = "https://www.api.thehawkeyes.com/verify/add?error_type=2&url=" +request.currentUrl
                             var elemDiv = document.createElement('div');
                             elemDiv.innerHTML = alarmModal;
                             document.body.appendChild(elemDiv);
