@@ -1,6 +1,6 @@
 {
   "name": "HAWK EYES",
-  "description": "Hawk Eyes is a powerful browser extension that detects phishing websites in real-time. It analyzes URLs and web page content and integrates machine learning algorithms to detect phishing attacks.",
+  "description": "A powerful extension to detect zero-day phishing in real-time powered by machine learning.",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
