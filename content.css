@@ -2,12 +2,12 @@ body{
     margin: 0px;
     padding: 0px;
 }
-.alarm-modal p{
+.hawk-eyes-alarm-modal p{
     margin-bottom:12px;
     text-align:center;
 }
 /* The Modal (background) */
-.alarm-modal {
+.hawk-eyes-alarm-modal {
   /*display: none; !* Hidden by default *!*/
   position: fixed; /* Stay in place */
   z-index: 999999; /* Sit on top */
@@ -22,7 +22,7 @@ body{
 }
 
 /* Modal Content/Box */
-.alarm-modal-content {
+.hawk-eyes-alarm-modal-content {
   background-color: #dc3545!important;
   /*margin: 15% auto; !* 15% from the top and centered *!*/
   /*padding: 20px;*/
@@ -33,42 +33,42 @@ body{
 }
 
 /* The Close Button */
-.alarm-close {
+.hawk-eyes-alarm-close {
   color: beige;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.alarm-close:hover,
-.alarm-close:focus {
+.hawk-eyes-alarm-close:hover,
+.hawk-eyes-alarm-close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-.alarm-modal-content a{
+.hawk-eyes-alarm-modal-content a{
   color: darkred;
   text-decoration: none;
   display: block;
   padding: 4px;
 }
-.alarm-modal-content a:hover,
-.alarm-modal-content a:focus{
+.hawk-eyes-alarm-modal-content a:hover,
+.hawk-eyes-alarm-modal-content a:focus{
   color: red;
   text-decoration: none;
 }
-.alarm-modal-content .p-btn button{
+.hawk-eyes-alarm-modal-content .p-btn button{
    border: 1px solid red;
    background-color:white;
    color:red;
 }
-.alarm-modal-content .p-btn .report{
+.hawk-eyes-alarm-modal-content .p-btn .report{
    border: 1px solid red;
    background-color:white;
    color:red;
 }
-.alarm-modal-content .p-btn .cls{
+.hawk-eyes-alarm-modal-content .p-btn .cls{
    border: 1px solid red;
    background-color:white;
    color:black;

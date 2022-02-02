@@ -1,14 +1,13 @@
-const alarmModal="<div id=\"alarmModal\" class=\"alarm-modal phishing-alarm\">\n" +
+const hawk_eyes_alarmModal="<div id=\"hawk-eyes-alarmModal\" class=\"hawk-eyes-alarm-modal\">\n" +
     "\n" +
     "  <!-- Modal content -->\n" +
-    "  <div class=\"alarm-modal-content\">\n" +
-    "    <span class=\"alarm-close phishing-alarm-close-btn\">&times;</span>\n" +
+    "  <div class=\"hawk-eyes-alarm-modal-content\">\n" +
+    "    <span class=\"hawk-eyes-alarm-close phishing-alarm-close-btn\">&times;</span>\n" +
     "    <p class='alarm-text-desc'>Attackers may trick you into doing something dangerous like installing software or revealing your personal information (for example, passwords, phone numbers, or credit cards).</p>\n" +
     "<p class='p-btn'><button type='button' class='btn btn-outline-danger report' id ='report-phishing-false-alarm'> Report False Alarm >> </button> <button type='button' class='phishing-alarm-close-btn btn btn-outline-dark cls'>Close</button></p>\n" +
     "  </div>\n" +
     "\n" +
     "</div>";
-const progressBar ='<div class="progress"><div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>';
 let num_input=0
 let num_button=0
 let text ="";
@@ -19,7 +18,7 @@ chrome.storage.sync.get("current_url", ({ current_url }) => {
 });
 function closeAction(){
       // Get the modal
-      const modal = document.getElementById("alarmModal");
+      const modal = document.getElementById("hawk-eyes-alarmModal");
       modal.style.display = "none";
       modal.remove();
 }
@@ -78,23 +77,6 @@ chrome.runtime.onMessage.addListener(
             $('textarea').each(function(index){
                 num_input=num_input+1;
             });
-//            page_description=title;
-//            text = $.trim(text);
-            // H1-H6, P
-//            h1 = $('h1').text();
-//            h2 = $('h2').text();
-//            h3 = $('h3').text();
-//            h4 = $('h4').text();
-//            h5 = $('h5').text();
-//            h6 = $('h6').text();
-//            p = $('p').text();
-//            console.log("h1:"+h1);
-//            console.log("h2:"+h2);
-//            console.log("h3:"+h3);
-//            console.log("h4:"+h4);
-//            console.log("h5:"+h5);
-//            console.log("h6:"+h6);
-//            console.log("p:"+p);
             chrome.runtime.sendMessage({
                 message: 'DOM',
                 currentUrl: request.currentUrl,
@@ -106,13 +88,12 @@ chrome.runtime.onMessage.addListener(
             }, function(response) {
               if (response.phishing) {
                     chrome.storage.sync.get("exclude_url_list", ({ exclude_url_list }) => {
-                        console.log(exclude_url_list);
                         if(exclude_url_list && exclude_url_list.includes(request.currentUrl)){
                             return;
                         }else{
                             const URL = "https://www.api.thehawkeyes.com/verify/add?error_type=2&url=" +request.currentUrl
                             var elemDiv = document.createElement('div');
-                            elemDiv.innerHTML = alarmModal;
+                            elemDiv.innerHTML = hawk_eyes_alarmModal;
                             document.body.appendChild(elemDiv);
                             // Get the <span> element that closes the modal
                             const closeBtns = document.getElementsByClassName("phishing-alarm-close-btn");
@@ -139,8 +120,8 @@ chrome.runtime.onMessage.addListener(
               }else{
                   if(response.source=='report'){
                      count = response.num_users
-                     console.log(count+' user reported the link as a phishing link. Do you agree?')
                   }
+
               }
             });
         });
