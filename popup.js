@@ -29,7 +29,6 @@ let api_url_2 = api_host +'/verify/add?error_type=2&url=';
 
 chrome.storage.sync.get("data", ({ data }) => {
   if(data && data.success){
-    console.log(data)
     verify_html="";
     let risk_text = "LOW"
     let text_color = "green"
