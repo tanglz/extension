@@ -1,6 +1,6 @@
 {
   "name": "HAWK EYES",
-  "description": "A powerful extension to detect zero-day phishing in real-time powered by machine learning.",
+  "description": "A browser extension powered by machine learning to detect zero-day phishing attacks in real-time.",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
