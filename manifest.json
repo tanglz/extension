@@ -39,17 +39,17 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "/images/main_icon.png",
-      "32": "/images/main_icon.png",
-      "48": "/images/main_icon.png",
-      "128": "/images/main_icon.png"
+      "16": "/images/main_icon1.png",
+      "32": "/images/main_icon1.png",
+      "48": "/images/main_icon1.png",
+      "128": "/images/main_icon1.png"
     }
   },
   "icons": {
-    "16": "/images/main_icon.png",
-    "32": "/images/main_icon.png",
-    "48": "/images/main_icon.png",
-    "128": "/images/main_icon.png"
+    "16": "/images/main_icon1.png",
+    "32": "/images/main_icon1.png",
+    "48": "/images/main_icon1.png",
+    "128": "/images/main_icon1.png"
   },
   "options_page": "options.html"
 }
