@@ -33,12 +33,16 @@ chrome.storage.sync.get("data", ({ data }) => {
     let risk_text = "LOW"
     let text_color = "green"
     if(!data.phishing){
-      action_text="Report this site as suspicious >>";
-      url_container.style.color='green';
-      url_container.classList.add('yes');
-      url_container.classList.remove('no');
-      action_container.href=api_url_1 +link
-
+        url_container.style.color='green';
+        url_container.classList.add('yes');
+        url_container.classList.remove('no');
+        if(data.source == 'local'){
+          action_text="";
+          action_container.href=""
+        }else{
+          action_text="Report this site as suspicious >>";
+          action_container.href=api_url_1 +link
+        }
     }else{
       action_text="False Alarm >>";
       error_type=2

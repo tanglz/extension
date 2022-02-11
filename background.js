@@ -3,6 +3,7 @@ async function storeCurrentTabUrl() {
   let [tab] = await chrome.tabs.query(queryOptions);
   currentUrl = tab.url;
   chrome.storage.sync.set({'current_url': currentUrl});
+  chrome.storage.sync.set({'data': {}});
   chrome.tabs.sendMessage(tab.id, {
         message: 'check',
         currentUrl: currentUrl,
