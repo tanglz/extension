@@ -27,8 +27,7 @@
     "storage",
     "activeTab",
     "scripting",
-    "tabs",
-    "webRequest"
+    "tabs"
   ],
   "host_permissions": [
     "https://www.api.thehawkeyes.com/*",
