@@ -1,15 +1,37 @@
 async function storeCurrentTabUrl() {
-  let queryOptions = { active: true, currentWindow: true };
-  let [tab] = await chrome.tabs.query(queryOptions);
-  currentUrl = tab.url;
-  chrome.storage.sync.set({'current_url': currentUrl});
-  chrome.storage.sync.set({'data': {}});
-  chrome.tabs.sendMessage(tab.id, {
-        message: 'check',
-        currentUrl: currentUrl,
-        tabId: tab.id
-  });
-  return tab.url;
+    chrome.storage.sync.set({'data': {}});
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+          currentUrl = tabs[0].url;
+          if(!currentUrl.startsWith('http')){
+            return;
+          }
+          chrome.storage.sync.set({'current_url': currentUrl});
+          chrome.tabs.sendMessage(tabs[0].id,
+          {
+            message: 'check',
+            currentUrl: currentUrl,
+            tabId: tabs[0].id
+          },
+          function(response) {
+            console.log(response);
+            parameters=response
+            api_url = "https://www.api.thehawkeyes.com/predict/ai";
+            fetch(api_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({'url': parameters.currentUrl,'num_input':parameters.num_input,'num_button':parameters.num_button,'title':parameters.title, 'inputs':parameters.inputs,'buttons':parameters.buttons,'w_doc':parameters.w_doc,
+                    'h_doc':parameters.h_doc,
+                    'tag_input_list':parameters.tag_input_list,
+                    'tag_button_list': parameters.tag_button_list, 'version':'1.0.1'}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                chrome.storage.sync.set({'data': data});
+            });
+          });
+    });
 }
 
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
@@ -19,26 +41,6 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
 });
 chrome.tabs.onActivated.addListener(function (activeInfo) {
     storeCurrentTabUrl();
-});
 
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if (request.message === "DOM"){
-        api_url = "https://www.api.thehawkeyes.com/predict/ai";
-        fetch(api_url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({'url': request.currentUrl,'num_input':request.num_input,'num_button':request.num_button,'title':request.title, 'inputs':request.inputs,'buttons':request.buttons}),
-        })
-        .then(response => response.json())
-        .then(data => {
-            chrome.storage.sync.set({'data': data});
-            sendResponse(data);
-        });
-    }
-    return true;
-  }
-);
+});
 

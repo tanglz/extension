@@ -26,23 +26,31 @@ function closeAction(){
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.message === "check"){
-        $( document ).ready(function() {
-//            favicon_link = $("[rel~='icon']").attr('href');
+//        $( document ).ready(function() {
+            w_doc = $(document).width();
+            h_doc = $(document).height();
             title = $('title').text();
-//            let cloneBody = $('body').clone().find('script').remove().end();
-//            bb = cloneBody.find('style').remove().end();
-//            text = bb.text()
             placeholders=[]
             inputs = []
             buttons=[]
+            tag_input_list = []
+            tag_button_list = []
             $('input').each(function(index){
                 type = $(this).attr('type');
+                offset_left = $(this).offset().left
+                offset_top = $(this).offset().top
+                w = $(this).width();
+                h = $(this).height();
+                if((offset_left==0 && offset_top==0)){
+                    return;
+                }
                 if(type==''|| typeof type ==="undefined"){
                     type="text"
                 }
                 valid_input_types = ['text','number','password','search','email','tel'];
                 valid_button_types = ['submit','button']
                 if($.inArray(type, valid_input_types)>-1){
+                    tag_input_list.push({'l': offset_left,'t':offset_top,'w':w,'h':h})
                     val = $(this).attr('value');
                     placeholder = $(this).attr('placeholder');
                     desc = val || placeholder;
@@ -70,6 +78,14 @@ chrome.runtime.onMessage.addListener(
             });
 
             $('button').each(function(index){
+                offset_left = $(this).offset().left
+                offset_top = $(this).offset().top
+                w = $(this).width();
+                h = $(this).height();
+                if((offset_left==0 && offset_top==0)){
+                    return false;
+                }
+                tag_button_list.push({'l': offset_left,'t':offset_top,'w':w,'h':h})
                 btn={'type':'button','desc': $(this).text()}
                 buttons.push(btn)
                 num_button=num_button+1;
@@ -77,59 +93,61 @@ chrome.runtime.onMessage.addListener(
             $('textarea').each(function(index){
                 num_input=num_input+1;
             });
-            chrome.runtime.sendMessage({
-                message: 'DOM',
+            sendResponse({
                 currentUrl: request.currentUrl,
                 num_input: num_input,
                 num_button:num_button,
                 title:title,
                 inputs:inputs,
-                buttons: buttons
-            }, function(response) {
-              if (response.phishing) {
-                    chrome.storage.sync.get("exclude_url_list", ({ exclude_url_list }) => {
-                        if(exclude_url_list && exclude_url_list.includes(request.currentUrl)){
-                            return;
-                        }else{
-                            const URL = "https://www.api.thehawkeyes.com/verify/add?error_type=2&url=" +request.currentUrl
-                            var elemDiv = document.createElement('div');
-                            elemDiv.innerHTML = hawk_eyes_alarmModal;
-                            document.body.appendChild(elemDiv);
-                            // Get the <span> element that closes the modal
-                            const closeBtns = document.getElementsByClassName("phishing-alarm-close-btn");
-                            // When the user clicks on <span> (x), close the modal
-                            if(exclude_url_list){
-                                exclude_url_list.push(link);
-                            }else{
-                                exclude_url_list = [link];
-                            }
-                            for (var i = 0; i < closeBtns.length; i++) {
-                                closeBtns[i].addEventListener('click', function(event){
-                                    closeAction();
-                                    chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
-                                });
-                            }
-                            const reportBtn = document.getElementById("report-phishing-false-alarm");
-                            reportBtn.addEventListener('click',function (event){
-                                closeAction();
-                                chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
-                                window.open(URL, '_blank').focus();
-                            });
-                        }
-                    });
-              }else{
-                  if(response.source=='report'){
-                     count = response.num_users
-                  }
-
-              }
+                buttons: buttons,
+                w_doc:w_doc,
+                h_doc:h_doc,
+                tag_input_list:tag_input_list,
+                tag_button_list: tag_button_list
             });
-        });
+//        });
     }
   }
 );
 
-
+chrome.storage.onChanged.addListener(function (changes, namespace) {
+  for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
+    if(key==='data'){
+        if(newValue.phishing){
+            chrome.storage.sync.get("exclude_url_list", ({ exclude_url_list }) => {
+                if(exclude_url_list && exclude_url_list.includes(newValue.currentUrl)){
+                    return;
+                }else{
+                    const URL = "https://www.api.thehawkeyes.com/verify/add?error_type=2&url=" +newValue.currentUrl
+                    var elemDiv = document.createElement('div');
+                    elemDiv.innerHTML = hawk_eyes_alarmModal;
+                    document.body.appendChild(elemDiv);
+                    // Get the <span> element that closes the modal
+                    const closeBtns = document.getElementsByClassName("phishing-alarm-close-btn");
+                    // When the user clicks on <span> (x), close the modal
+                    if(exclude_url_list){
+                        exclude_url_list.push(link);
+                    }else{
+                        exclude_url_list = [link];
+                    }
+                    for (var i = 0; i < closeBtns.length; i++) {
+                        closeBtns[i].addEventListener('click', function(event){
+                            closeAction();
+                            chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
+                        });
+                    }
+                    const reportBtn = document.getElementById("report-phishing-false-alarm");
+                    reportBtn.addEventListener('click',function (event){
+                        closeAction();
+                        chrome.storage.sync.set({"exclude_url_list":exclude_url_list});
+                        window.open(URL, '_blank').focus();
+                    });
+                }
+            });
+        }
+    }
+  }
+});
 
 
 
