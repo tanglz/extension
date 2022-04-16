@@ -62,6 +62,8 @@ body{
    border: 1px solid red;
    background-color:white;
    color:red;
+   max-width: 250px;
+   display:inline;
 }
 .hawk-eyes-alarm-modal-content .p-btn .report{
    border: 1px solid red;
