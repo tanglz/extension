@@ -2,16 +2,10 @@
 chrome extension for phishing detection
 
 # Installation
+https://chrome.google.com/webstore/detail/hawk-eyes/ekobfalejalidceannlelkiombbfmgad?hl=en-US
 
-### 1. download extension from GitHub release
-    https://github.com/tanglz/extension
+# Publications
 
-### 2. Open Chrome Web Browser, go to extensions
-    chrome://extensions/
-### 3. Load unpacked
-![Screenshot 2021-11-25 102127](https://user-images.githubusercontent.com/1442579/143473154-987c7720-4111-4dd1-b916-46c08a6b773b.jpg)
+L. Tang and Q. H. Mahmoud, “A Survey of Machine Learning-Based Solutions for Phishing Website Detection,” Machine Learning and Knowledge Extraction, vol. 3, no. 3, pp. 672–694, Aug. 2021. Doi: https://doi.org/10.3390/make3030034.
 
-##### Make sure open developer mode.
-
-### 4. (Optional) PIN to toolbar
-![Screenshot 2021-11-25 110236](https://user-images.githubusercontent.com/1442579/143473228-5c629ebb-3be3-4b72-8a05-84fc24cd753e.jpg)
+L. Tang and Q. H. Mahmoud, "A Deep Learning-Based Framework for Phishing Website Detection," in IEEE Access, vol. 10, pp. 1509-1521, 2022. doi: 10.1109/ACCESS.2021.3137636.
